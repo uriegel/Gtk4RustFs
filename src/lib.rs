@@ -27,3 +27,12 @@ pub extern fn get_name() -> *mut u8 {
         get_string_ptr(string)
     }
 }
+
+#[no_mangle]
+pub extern fn call_back(func: unsafe extern "C" fn(i32)) {
+    println!("Before calling F# back");
+    unsafe {
+        func(1234567);
+    }
+    println!("After calling F# back");
+}
