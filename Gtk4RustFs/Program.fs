@@ -8,7 +8,7 @@ extern int addNumbers(int a, int b)
 [<DllImport("../../../../target/debug/librust.so", SetLastError = true, EntryPoint="get_name")>]
 extern nativeint getName()
 
-type CallbackDelegate = delegate of int -> unit
+type CallbackDelegate = delegate of string * int64 -> unit
 
 [<DllImport("../../../../target/debug/librust.so", SetLastError = true, EntryPoint="call_back")>]
 extern void callBack(CallbackDelegate cb) 
@@ -21,7 +21,7 @@ let fromPtr (ptr: nativeint) =
 printfn "Hello from F#"
 printfn "addNumbers: %d" <| addNumbers (12, 99)
 printfn "getString: %s" <| (fromPtr <| getName ())
-let cb = fun i -> printfn "Callback from rust: %d" i
+let cb = fun (str: string) (l: int64) -> printfn "Callback from rust: %s" <| str.Substring(0, (int)l)
 callBack(cb)
 printfn "Finished"
 
