@@ -1,7 +1,7 @@
 {
 	"version": "2.0.0",
 	"tasks": [ {
-            "label": "build",
+            "label": "buildFs",
             "command": "dotnet",
             "type": "shell",
             "args": [
@@ -16,6 +16,19 @@
                 "reveal": "silent"
             },
             "problemMatcher": "$msCompile"
-        },	
+        }, {
+			"type": "cargo",
+			"command": "build",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"label": "rust"
+		}, {
+            "label": "build",
+            "group": "build",
+            "dependsOrder": "sequence",
+            "dependsOn": ["rust", "buildFs"]
+        }   
 	]
 }

@@ -1,2 +1,7 @@
 Gtk4RustFs/bin
 Gtk4RustFs/obj
+
+
+# Added by cargo
+
+/target
