@@ -29,11 +29,12 @@ pub extern fn get_name() -> *mut u8 {
 }
 
 #[no_mangle]
-pub extern fn call_back(func: unsafe extern "C" fn(*const u8, usize)) {
+pub extern fn call_back(func: unsafe extern "C" fn(*const u8, i32)) {
     println!("Before calling F# back");
     unsafe {
         let text = "Callback from Rust😂😂😂😂";
-        func(text.as_ptr(), text.chars().count());
+        let bytes = text.as_bytes();
+        func(bytes.as_ptr(), bytes.len() as i32);
     }
     println!("After calling F# back");
 }
